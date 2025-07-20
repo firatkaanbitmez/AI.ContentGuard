@@ -1,0 +1,6 @@
+@AI.ContentGuard.API_HostAddress = http://localhost:5252
+
+GET {{AI.ContentGuard.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
