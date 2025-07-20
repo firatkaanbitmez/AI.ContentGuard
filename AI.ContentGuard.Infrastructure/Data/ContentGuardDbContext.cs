@@ -1,9 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using AI.ContentGuard.Domain.Entities;
+using AI.ContentGuard.Application.Interfaces; // Add this
 
 namespace AI.ContentGuard.Infrastructure.Data;
 
-public class ContentGuardDbContext : DbContext
+public class ContentGuardDbContext : DbContext, IContentGuardDbContext // Implement interface
 {
     public ContentGuardDbContext(DbContextOptions<ContentGuardDbContext> options)
         : base(options) { }

@@ -1,22 +1,26 @@
 <Project Sdk="Microsoft.NET.Sdk.Worker">
 
-  <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>dotnet-AI.ContentGuard.Worker-77574a22-92a1-4f3f-a136-5475d9cd65d7</UserSecretsId>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net9.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<UserSecretsId>dotnet-AI.ContentGuard.Worker-77574a22-92a1-4f3f-a136-5475d9cd65d7</UserSecretsId>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="MassTransit" Version="8.5.1" />
-    <PackageReference Include="MassTransit.RabbitMQ" Version="8.5.1" />
-    <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.7" />
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="9.0.7" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="MassTransit" Version="8.5.1" />
+		<PackageReference Include="MassTransit.RabbitMQ" Version="8.5.1" />
+		<PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="9.0.7" />
+		<PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.7" />
+		<PackageReference Include="Microsoft.Extensions.Logging" Version="9.0.7" />
+		<PackageReference Include="Serilog.Extensions.Hosting" Version="8.0.0" />
+		<PackageReference Include="Serilog.Sinks.Console" Version="5.0.0" />
+		<PackageReference Include="Serilog.Sinks.Elasticsearch" Version="10.0.0" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\AI.ContentGuard.Application\AI.ContentGuard.Application.csproj" />
-    <ProjectReference Include="..\AI.ContentGuard.Infrastructure\AI.ContentGuard.Infrastructure.csproj" />
-    <ProjectReference Include="..\AI.ContentGuard.Shared\AI.ContentGuard.Shared.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\AI.ContentGuard.Application\AI.ContentGuard.Application.csproj" />
+		<ProjectReference Include="..\AI.ContentGuard.Infrastructure\AI.ContentGuard.Infrastructure.csproj" />
+		<ProjectReference Include="..\AI.ContentGuard.Shared\AI.ContentGuard.Shared.csproj" />
+	</ItemGroup>
 </Project>

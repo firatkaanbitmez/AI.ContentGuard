@@ -32,10 +32,14 @@ Log.Logger = new LoggerConfiguration()
 builder.Logging.ClearProviders();
 builder.Logging.AddSerilog();
 
+
 // Database
 builder.Services.AddDbContext<ContentGuardDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+// Register as interface
+builder.Services.AddScoped<IContentGuardDbContext>(provider =>
+    provider.GetRequiredService<ContentGuardDbContext>());
 // Cache
 builder.Services.AddMemoryCache();
 builder.Services.AddStackExchangeRedisCache(options =>

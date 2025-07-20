@@ -1,20 +1,19 @@
 ﻿using AI.ContentGuard.Application.Interfaces;
-using Microsoft.EntityFrameworkCore; 
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace AI.ContentGuard.Application.Services;
 
 public class FeedbackHandler : IFeedbackHandler
 {
-    private readonly ContentGuardDbContext _dbContext;
+    private readonly IContentGuardDbContext _dbContext; // Use interface
     private readonly ILogger<FeedbackHandler> _logger;
 
-    public FeedbackHandler(ContentGuardDbContext dbContext, ILogger<FeedbackHandler> logger)
+    public FeedbackHandler(IContentGuardDbContext dbContext, ILogger<FeedbackHandler> logger)
     {
         _dbContext = dbContext;
         _logger = logger;
     }
-
     public async Task HandleFeedbackAsync(Guid requestId, bool isFalsePositive, bool isFalseNegative)
     {
         try
