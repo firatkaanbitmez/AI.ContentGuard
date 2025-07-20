@@ -26,28 +26,11 @@ public class ContentGuardWorker : BackgroundService
             {
                 // Log worker health
                 var process = Process.GetCurrentProcess();
-                _logger.LogInformation("Analysis result published for RequestId: {RequestId}", requestId);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Failed to publish analysis result for RequestId: {RequestId}", requestId);
-                throw;
-            }
-        }
-    }
-
-    public class AnalysisCompletedEvent
-    {
-        public Guid RequestId { get; set; }
-        public int RiskScore { get; set; }
-        public string RiskLevel { get; set; } = string.Empty;
-        public DateTime CompletedAt { get; set; }
-    }
-    formation("Worker Status - Memory: {memory}MB, Threads: {threads}",
+                _logger.LogInformation("Worker Status - Memory: {memory}MB, Threads: {threads}",
                         process.WorkingSet64 / 1024 / 1024,
                         process.Threads.Count);
 
-    await Task.Delay(TimeSpan.FromMinutes(1), stoppingToken);
+                await Task.Delay(TimeSpan.FromMinutes(1), stoppingToken);
             }
             catch (Exception ex)
             {
@@ -57,4 +40,12 @@ public class ContentGuardWorker : BackgroundService
 
         _logger.LogInformation("ContentGuard Worker stopping at: {time}", DateTimeOffset.Now);
     }
+}
+
+public class AnalysisCompletedEvent
+{
+    public Guid RequestId { get; set; }
+    public int RiskScore { get; set; }
+    public string RiskLevel { get; set; } = string.Empty;
+    public DateTime CompletedAt { get; set; }
 }

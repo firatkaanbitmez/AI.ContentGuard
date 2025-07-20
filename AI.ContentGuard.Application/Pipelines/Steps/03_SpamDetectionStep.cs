@@ -1,7 +1,8 @@
-﻿using AI.ContentGuard.Application.Interfaces;
+﻿// AI.ContentGuard.Application/Pipelines/Steps/03_SpamDetectionStep.cs
+using AI.ContentGuard.Application.Interfaces;
 using AI.ContentGuard.Application.Pipelines.Interfaces;
-using AI.ContentGuard.Domain.Entities;
 using Microsoft.Extensions.Logging;
+using DomainDetectedIssue = AI.ContentGuard.Domain.Entities.DetectedIssue; // Use alias
 
 namespace AI.ContentGuard.Application.Pipelines.Steps;
 
@@ -30,7 +31,7 @@ public class SpamDetectionStep : IPipelineStep
 
             foreach (var issue in context.SpamResult.Issues)
             {
-                context.Issues.Add(new DetectedIssue
+                context.Issues.Add(new DomainDetectedIssue
                 {
                     Type = "SPAM",
                     Description = issue,

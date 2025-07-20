@@ -1,6 +1,10 @@
 ﻿using AI.ContentGuard.Domain.Entities;
+using AI.ContentGuard.Infrastructure.Data; // Add this using
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore; // Add this using
 using Microsoft.Extensions.Caching.Memory;
+
+namespace AI.ContentGuard.API.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]

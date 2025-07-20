@@ -1,5 +1,5 @@
 using AI.ContentGuard.Application.DTOs;
-using AI.ContentGuard.Domain.Entities;
+using DomainDetectedIssue = AI.ContentGuard.Domain.Entities.DetectedIssue; // Use alias
 
 namespace AI.ContentGuard.Application.Pipelines;
 
@@ -10,7 +10,7 @@ public class PipelineContext
     public NormalizedContent? NormalizedContent { get; set; }
     public SpamDetectionResult? SpamResult { get; set; }
     public ImageAnalysisResult? ImageResult { get; set; }
-    public List<DetectedIssue> Issues { get; } = new();
+    public List<DomainDetectedIssue> Issues { get; } = new(); // Use alias
     public int Score { get; set; }
     public string RiskLevel { get; set; } = "UNKNOWN";
     public Dictionary<string, object> Metadata { get; } = new();

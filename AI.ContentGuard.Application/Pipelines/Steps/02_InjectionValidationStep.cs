@@ -1,7 +1,8 @@
-﻿using AI.ContentGuard.Application.Interfaces;
+﻿// AI.ContentGuard.Application/Pipelines/Steps/02_InjectionValidationStep.cs
+using AI.ContentGuard.Application.Interfaces;
 using AI.ContentGuard.Application.Pipelines.Interfaces;
-using AI.ContentGuard.Domain.Entities;
 using Microsoft.Extensions.Logging;
+using DomainDetectedIssue = AI.ContentGuard.Domain.Entities.DetectedIssue; // Use alias
 
 namespace AI.ContentGuard.Application.Pipelines.Steps;
 
@@ -30,7 +31,7 @@ public class InjectionValidationStep : IPipelineStep
 
             if (context.HasInjection)
             {
-                context.Issues.Add(new DetectedIssue
+                context.Issues.Add(new DomainDetectedIssue
                 {
                     Type = "INJECTION_ATTACK",
                     Description = "Potential injection attack detected",
@@ -51,3 +52,6 @@ public class InjectionValidationStep : IPipelineStep
     public bool ShouldExecute(PipelineContext context) =>
         context.NormalizedContent != null;
 }
+
+
+
