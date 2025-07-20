@@ -3,7 +3,6 @@ using AI.ContentGuard.Application.Interfaces;
 using AI.ContentGuard.Application.Pipelines.Interfaces;
 using AI.ContentGuard.Domain.Entities;
 using Microsoft.Extensions.Logging;
-
 namespace AI.ContentGuard.Application.Pipelines;
 
 public class ContentAnalysisPipelineExecutor : IContentAnalysisPipeline

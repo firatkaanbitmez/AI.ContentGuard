@@ -1,13 +1,13 @@
 ﻿using AI.ContentGuard.Application.DTOs;
 using AI.ContentGuard.Application.Interfaces;
-using System.Text.RegularExpressions;
 using Microsoft.Extensions.Logging;
+using System.Text.RegularExpressions;
 
 namespace AI.ContentGuard.Application.Services;
 
 public class InjectionValidator : IInjectionValidator
 {
-    private readonly ILogger<InjectionValidator> _logger;
+    private readonly Microsoft.Extensions.Logging.ILogger<InjectionValidator> _logger;
 
     // SQL Injection patterns
     private readonly List<Regex> _sqlPatterns = new()
@@ -15,7 +15,7 @@ public class InjectionValidator : IInjectionValidator
         new Regex(@"(\b(SELECT|INSERT|UPDATE|DELETE|DROP|UNION|CREATE|ALTER|EXEC|EXECUTE)\b)", RegexOptions.IgnoreCase),
         new Regex(@"(--|#|\/\*|\*\/|@@|@)", RegexOptions.IgnoreCase),
         new Regex(@"(\bOR\b\s*\d+\s*=\s*\d+|\bAND\b\s*\d+\s*=\s*\d+)", RegexOptions.IgnoreCase),
-        new Regex(@"('|(\')|\""|(\"\")|(´)|(`))", RegexOptions.IgnoreCase),
+        new Regex(@"('|""|´|`)", RegexOptions.IgnoreCase),
         new Regex(@"(\bEXEC\b\s*\(|\bEXECUTE\b\s*\()", RegexOptions.IgnoreCase),
         new Regex(@"(xp_|sp_|OPENROWSET|OPENDATASOURCE|OPENQUERY)", RegexOptions.IgnoreCase),
         new Regex(@"(WAITFOR\s+DELAY|BENCHMARK\s*\(|SLEEP\s*\()", RegexOptions.IgnoreCase)
@@ -34,7 +34,7 @@ public class InjectionValidator : IInjectionValidator
         new Regex(@"eval\s*\(", RegexOptions.IgnoreCase),
         new Regex(@"expression\s*\(", RegexOptions.IgnoreCase),
         new Regex(@"vbscript\s*:", RegexOptions.IgnoreCase),
-        new Regex(@"<img[^>]+src[\\s]*=[\\s]*[\"']javascript:", RegexOptions.IgnoreCase)
+        new Regex(@"<img[^>]+src\s*=\s*[""]javascript:", RegexOptions.IgnoreCase)
     };
 
     // NoSQL Injection patterns
@@ -46,7 +46,7 @@ public class InjectionValidator : IInjectionValidator
         new Regex(@"\.aggregate\s*\(", RegexOptions.IgnoreCase)
     };
 
-    public InjectionValidator(ILogger<InjectionValidator> logger)
+    public InjectionValidator(Microsoft.Extensions.Logging.ILogger<InjectionValidator> logger)
     {
         _logger = logger;
     }

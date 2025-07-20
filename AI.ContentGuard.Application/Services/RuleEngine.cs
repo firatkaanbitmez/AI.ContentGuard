@@ -4,6 +4,7 @@ using System.Text.RegularExpressions;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Caching.Memory;
 
+
 namespace AI.ContentGuard.Application.Services;
 
 public class RuleEngine : IRuleEngine

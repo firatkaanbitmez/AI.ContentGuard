@@ -1,7 +1,6 @@
 ﻿using AI.ContentGuard.Application.Interfaces;
-using AI.ContentGuard.Infrastructure.Data;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+
 
 namespace AI.ContentGuard.Application.Services;
 
